@@ -5,6 +5,8 @@ from ..net import Net
 
 def test_net_forward(net: Net):
 
+    batch_size = 2
+
     inputs = np.array(
         [
             [[1, 2]],
@@ -14,7 +16,7 @@ def test_net_forward(net: Net):
 
     output = net.forward(inputs)
 
-    assert output.shape == (1, 1, net.batch_size)
+    assert output.shape == (1, 1, batch_size)
     assert output[0][0][0] >= 0 and output[0][0][0] <= 1
     assert output[0][0][1] >= 0 and output[0][0][1] <= 1
 

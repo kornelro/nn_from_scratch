@@ -5,7 +5,7 @@ from ..sigmoid import Sigmoid
 
 def test_sigmoid_forward_size(sigmoid: Sigmoid):
     n_inputs = sigmoid.n_inputs
-    batch_size = sigmoid.batch_size
+    batch_size = 2
 
     output = sigmoid.forward(
         np.random.uniform(
@@ -42,7 +42,7 @@ def test_sigmoid_forward_values(sigmoid: Sigmoid):
 
 def test_sigmoid_backward_size(sigmoid: Sigmoid):
     n_inputs = sigmoid.n_inputs
-    batch_size = sigmoid.batch_size
+    batch_size = 2
 
     sigmoid.forward(
         np.random.uniform(

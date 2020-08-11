@@ -10,13 +10,11 @@ class FullyConnected(Layer):
         layer_id: str,
         n_inputs: int,
         n_neurons: int,
-        batch_size: int
     ):
         super(FullyConnected, self).__init__(
             layer_id=layer_id,
             n_inputs=n_inputs,
             n_outputs=n_neurons,
-            batch_size=batch_size
         )
         self.weights = np.random.uniform(size=(self.n_outputs, self.n_inputs))
 
@@ -33,11 +31,13 @@ class FullyConnected(Layer):
         lr: float
     ) -> np.array:
 
+        batch_size = error_wrt_output.shape[2]
+
         output_wrt_weights = np.transpose(self.inputs, axes=(1, 0, 2))
         error_wrt_weights = np.zeros(
-            shape=(self.n_outputs, self.n_inputs, self.batch_size)
+            shape=(self.n_outputs, self.n_inputs, batch_size)
         )
-        for k in range(self.batch_size):
+        for k in range(batch_size):
             error_wrt_weights[:, :, k] = np.dot(
                 error_wrt_output[:, :, k], output_wrt_weights[:, :, k]
             )

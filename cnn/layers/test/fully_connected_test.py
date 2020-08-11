@@ -6,7 +6,7 @@ from ..fully_connected import FullyConnected
 def test_fc_forward_size(fully_connected: FullyConnected):
     n_inputs = fully_connected.n_inputs
     n_neurons = fully_connected.n_outputs
-    batch_size = fully_connected.batch_size
+    batch_size = 2
 
     output = fully_connected.forward(
         np.random.uniform(
@@ -49,7 +49,7 @@ def test_fc_forward_values(fully_connected: FullyConnected):
 def test_fc_backward_size(fully_connected: FullyConnected):
     n_inputs = fully_connected.n_inputs
     n_neurons = fully_connected.n_outputs
-    batch_size = fully_connected.batch_size
+    batch_size = 2
 
     fully_connected.forward(
         np.random.uniform(

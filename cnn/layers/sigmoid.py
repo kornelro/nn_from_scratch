@@ -9,13 +9,11 @@ class Sigmoid(Layer):
         self,
         layer_id: str,
         n_inputs: int,
-        batch_size: int
     ):
         super(Sigmoid, self).__init__(
             layer_id=layer_id,
             n_inputs=n_inputs,
             n_outputs=n_inputs,
-            batch_size=batch_size
         )
 
     def _run_forward(

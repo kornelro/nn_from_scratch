@@ -1,6 +1,9 @@
 from typing import Tuple
-from .layers.layer import Layer
+
 import numpy as np
+
+from .layers.layer import Layer
+from .utils import input_is_proper_size
 
 
 class Net():
@@ -8,12 +11,10 @@ class Net():
     def __init__(
         self,
         n_inputs: int,
-        batch_size: int,
         layers: Tuple[Layer, ...],
         lr: float = 0.01
     ):
         self.n_inputs = n_inputs
-        self.batch_size = batch_size
         self.layers = layers
         self.lr = lr
         self.output = None
@@ -23,10 +24,10 @@ class Net():
         inputs: np.array
     ):
 
-        if not inputs.shape == (self.n_inputs, 1, self.batch_size):
+        if not input_is_proper_size(inputs, self.n_inputs):
             raise Exception(
                 F"Wrong net input size {inputs.shape},\
-                expected ({self.n_inputs, 1, self.batch_size})"
+                expected ({self.n_inputs}, 1, batch_size)"
             )
 
         output = self.layers[0].forward(inputs)
@@ -46,10 +47,10 @@ class Net():
             raise Exception(
                 'Backward must be proceded after forward in net'
             )
-        if not y_true.shape == (1, 1, self.batch_size):
+        if not input_is_proper_size(y_true, 1):
             raise Exception(
                 F"Wrong y_true size {y_true.shape},\
-                expected ({1, 1, self.batch_size})"
+                expected (1, 1, batch_size)"
             )
 
         error_wrt_output = self.output - y_true

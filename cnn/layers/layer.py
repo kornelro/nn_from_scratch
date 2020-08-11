@@ -28,6 +28,8 @@ class Layer(abc.ABC):
                 expected ({self.n_inputs, 1, self.batch_size})"
             )
 
+        self.inputs = inputs
+
         return self._run_forward(inputs)
 
     @abc.abstractmethod
@@ -40,7 +42,7 @@ class Layer(abc.ABC):
     def backward(
         self,
         error_wrt_output: np.array,
-        lr: float
+        lr: float = 0.1
     ) -> np.array:
 
         if self.inputs is None:
@@ -49,7 +51,7 @@ class Layer(abc.ABC):
             )
         if not error_wrt_output.shape == (self.n_outputs, 1, self.batch_size):
             raise Exception(
-                F"Wrong error_wrt_outpus size \
+                F"Wrong error_wrt_output size \
                 {error_wrt_output.shape} in {self.layer_id}, \
                 expected ({self.n_outputs}, 1, {self.batch_size})"
             )

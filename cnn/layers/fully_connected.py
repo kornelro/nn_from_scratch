@@ -18,15 +18,12 @@ class FullyConnected(Layer):
             n_outputs=n_neurons,
             batch_size=batch_size
         )
-        self.n_neurons = n_neurons
         self.weights = np.random.uniform(size=(self.n_outputs, self.n_inputs))
 
     def _run_forward(
         self,
         inputs: np.array
     ) -> np.array:
-
-        self.inputs = inputs
 
         return np.tensordot(self.weights, inputs, axes=1)
 

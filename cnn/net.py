@@ -10,11 +10,10 @@ class Net():
 
     def __init__(
         self,
-        n_inputs: int,
         layers: Tuple[Layer, ...],
         lr: float = 0.01
     ):
-        self.n_inputs = n_inputs
+        self.n_inputs = layers[0].n_inputs
         self.layers = layers
         self.lr = lr
         self.output = None

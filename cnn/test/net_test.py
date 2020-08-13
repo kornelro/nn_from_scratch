@@ -35,7 +35,7 @@ def test_net_backward(net: Net):
     weights_output = np.copy(net.layers[2].weights)
 
     net.forward(inputs)
-    net.backward(y_true)
+    net.backward(y_true, 0.01)
 
     assert not np.array_equal(
         net.layers[0].weights,

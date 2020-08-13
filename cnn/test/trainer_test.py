@@ -167,7 +167,8 @@ def test_trainer(trainer: Trainer):
         X_train=X_train,
         y_train=y_train,
         batch_size=2,
-        epochs=2
+        epochs=2,
+        lr=0.01
     )
 
     y_pred = trainer.predict(X_test)

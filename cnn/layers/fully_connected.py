@@ -47,6 +47,6 @@ class FullyConnected(Layer):
             output_wrt_inputs.T, error_wrt_output, axes=1
         )
 
-        self.weights = self.weights + lr * np.mean(error_wrt_weights, axis=2)
+        self.weights = self.weights - lr * np.mean(error_wrt_weights, axis=2)
 
         return error_wrt_inputs

@@ -2,6 +2,7 @@ from pytest import fixture
 
 from .layers.fully_connected import FullyConnected
 from .layers.sigmoid import Sigmoid
+from .layers.batch_normalization import BatchNormalization
 from .net import Net
 from .trainer import Trainer
 
@@ -20,6 +21,15 @@ def sigmoid() -> Sigmoid:
     return Sigmoid(
         'sigmoid',
         n_inputs=3
+    )
+
+
+@fixture(scope='session')
+def batch_normalization() -> BatchNormalization:
+    return BatchNormalization(
+        'sigmoid',
+        n_inputs=3,
+        epsilon=0
     )
 
 
@@ -45,8 +55,7 @@ def net() -> Net:
                 'sigmoid_output',
                 n_inputs=1,
             )
-        ),
-        lr=0.1
+        )
     )
 
 
@@ -72,8 +81,7 @@ def trainer() -> Trainer:
                 'sigmoid_output',
                 n_inputs=1,
             )
-        ),
-        lr=0.1
+        )
     )
     return Trainer(
         net=net

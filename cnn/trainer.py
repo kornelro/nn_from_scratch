@@ -1,6 +1,7 @@
 from typing import List
 
 import numpy as np
+from tqdm import tqdm
 
 from .net import Net
 
@@ -18,7 +19,8 @@ class Trainer():
         X_train: np.array,
         y_train: np.array,
         batch_size: int,
-        epochs: int
+        epochs: int,
+        lr: float
     ):
         if len(X_train.shape) != 2:
             raise Exception('X_train must be 2-dim array')
@@ -37,12 +39,16 @@ class Trainer():
         batches_y = self._get_batches(y_train, batch_size)
         batches_y = self._resize_batches(batches_y)
 
-        batches = zip(batches_X, batches_y)
+        batches = list(zip(batches_X, batches_y))
 
         for epoch_num in range(epochs):
-            for batch_X, batch_y in batches:
+            for batch_num in tqdm(
+                range(len(batches)),
+                desc="Epoch "+str(epoch_num+1)
+            ):
+                batch_X, batch_y = batches[batch_num]
                 self.net.forward(batch_X)
-                self.net.backward(batch_y)
+                self.net.backward(batch_y, lr)
 
     def predict(
         self,

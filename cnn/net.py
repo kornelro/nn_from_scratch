@@ -11,11 +11,9 @@ class Net():
     def __init__(
         self,
         layers: Tuple[Layer, ...],
-        lr: float = 0.01
     ):
         self.n_inputs = layers[0].n_inputs
         self.layers = layers
-        self.lr = lr
         self.output = None
 
     def forward(
@@ -39,7 +37,8 @@ class Net():
 
     def backward(
         self,
-        y_true: np.array
+        y_true: np.array,
+        lr: float
     ):
 
         if self.output is None:
@@ -58,5 +57,5 @@ class Net():
         for layer in self.layers[::-1]:
             error_wrt_layer_output = layer.backward(
                 error_wrt_layer_output,
-                self.lr
+                lr
              )

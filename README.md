@@ -1,2 +1,2 @@
 # nn_from_scratch
-Neural network from scratch tested for binary classification.
+Fully connected neural network from scratch tested for binary classification.

@@ -34,9 +34,9 @@ def test_batch_normalization_forward_value(
     assert np.array_equal(
         np.around(output, 2),
         np.array([
-            [[-0.11, -0.17]],
-            [[0.5, 1.03]],
-            [[1.11, 0.63]]
+            [[-0.29, 0.22]],
+            [[0.14, 1.22]],
+            [[0.57, 0.89]]
         ])
     )
     assert np.mean((output - 0.5)/0.5).round() == 0

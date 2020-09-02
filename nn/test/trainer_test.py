@@ -173,4 +173,4 @@ def test_trainer(trainer: Trainer):
 
     y_pred = trainer.predict(X_test)
 
-    assert y_pred.shape == y_test.shape
+    assert y_pred.shape == (1, 1, 2)

@@ -24,6 +24,7 @@ def test_fc_forward_values(fully_connected: FullyConnected):
         [1, 2],
         [5, 4]
     ])
+    fully_connected.bias = 0.5
     inputs = np.array(
         [
             [[1, 2]],
@@ -37,10 +38,10 @@ def test_fc_forward_values(fully_connected: FullyConnected):
         output,
         np.array(
             [
-                [[5, 4]],
-                [[13, 14]],
-                [[5, 4]],
-                [[13, 14]]
+                [[5.5, 4.5]],
+                [[13.5, 14.5]],
+                [[5.5, 4.5]],
+                [[13.5, 14.5]]
             ]
         )
     )

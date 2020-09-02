@@ -17,13 +17,14 @@ class FullyConnected(Layer):
             n_outputs=n_neurons,
         )
         self.weights = np.random.uniform(size=(self.n_outputs, self.n_inputs))
+        self.bias = np.random.uniform()
 
     def _run_forward(
         self,
         inputs: np.array
     ) -> np.array:
 
-        return np.tensordot(self.weights, inputs, axes=1)
+        return np.tensordot(self.weights, inputs, axes=1) + self.bias
 
     def _run_backward(
         self,
@@ -48,5 +49,6 @@ class FullyConnected(Layer):
         )
 
         self.weights = self.weights - lr * np.mean(error_wrt_weights, axis=2)
+        self.bias = self.bias - lr * np.mean(error_wrt_output)
 
         return error_wrt_inputs

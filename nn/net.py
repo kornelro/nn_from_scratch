@@ -45,10 +45,10 @@ class Net():
             raise Exception(
                 'Backward must be proceded after forward in net'
             )
-        if not input_is_proper_size(y_true, 1):
+        if not input_is_proper_size(y_true, self.layers[-1].n_outputs):
             raise Exception(
                 F"Wrong y_true size {y_true.shape},\
-                expected (1, 1, batch_size)"
+                expected ({self.layers[-1].n_outputs}, 1, batch_size)"
             )
 
         error_wrt_output = self.output - y_true

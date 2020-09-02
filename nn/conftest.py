@@ -2,6 +2,7 @@ from pytest import fixture
 
 from .layers.fully_connected import FullyConnected
 from .layers.sigmoid import Sigmoid
+from .layers.softmax import Softmax
 from .layers.batch_normalization import BatchNormalization
 from .net import Net
 from .trainer import Trainer
@@ -20,6 +21,14 @@ def fully_connected() -> FullyConnected:
 def sigmoid() -> Sigmoid:
     return Sigmoid(
         'sigmoid',
+        n_inputs=3
+    )
+
+
+@fixture(scope='session')
+def softmax() -> Softmax:
+    return Softmax(
+        'softmax',
         n_inputs=3
     )
 

@@ -62,7 +62,8 @@ class Trainer():
         X_test = self._resize_batches([X_test])[0]
         y_pred = self.net.forward(X_test)
 
-        return np.resize(y_pred, (y_pred.shape[2], 1))
+        # return np.resize(y_pred, (y_pred.shape[2], 1))
+        return y_pred
 
     def _get_batches(
         self,
